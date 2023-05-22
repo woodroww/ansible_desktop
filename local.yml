@@ -4,36 +4,32 @@
   become: true
 
   tasks:
-  - name: install packages
-    package:
-      name:
-        - htop
-        - tmux
-        - python3-psutil
-
-  - name: copy wallpaper file
-    copy:
-      src: files/wallpaper.png
-      dest: /usr/share/backgrounds/ansible-wallpaper.png
-      owner: root
-      group: root
-
-  - name: set wallpaper
-    become_user: matt
-    dconf:
-      key: "/org/gnome/desktop/background/picture-uri"
-      value: "'file:///usr/share/backgrounds/ansible-wallpaper.png'"
-
-  - name: set wallpaper position
-    become_user: matt
-    dconf:
-      key: "/org/gnome/desktop/background/picture-options"
-      value: "'zoom'"
-
-  - name: copy .bashrc file
-    copy:
-      src: files/bashrc
-      dest: /home/matt/.bashrc
-      owner: matt
-      group: matt
-
+  - name: Install a list of packages
+    ansible.builtin.apt:
+      pkg:
+      - foo
+      - python3-pip
+      - openssh-server
+      - scdaemon
+      - paperkey
+      - stow
+      - zsh
+      - fzf
+      - zoxide
+      - exa
+      - tmux
+      - tree
+      - pass
+      - pwgen
+      - sqlite3
+      - libssl-dev
+      - postgresql-13
+      - ripgrep
+      - rsync
+      - ncdu
+      - ufw
+      - libpam-yubico
+      - libyubikey-dev
+      - yubikey-personalization
+      - yubikey-luks
+      - wireshark
