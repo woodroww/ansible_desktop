@@ -32,3 +32,6 @@
       - yubikey-personalization
       - yubikey-luks
       - wireshark
+      - ninja-build
+      - gettext
+      - cmake
