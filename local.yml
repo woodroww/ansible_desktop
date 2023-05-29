@@ -57,3 +57,6 @@
       - tk-dev
       - libasound2-dev
       - libudev-dev
+      - kitty
+      - kitty-doc
+      - kitty-terminfo
