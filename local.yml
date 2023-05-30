@@ -90,7 +90,7 @@
     become_user: matt
     community.general.dconf:
       key: /org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type
-      value: 'nothing'
+      value: "'nothing'"
   - name: blank screen 15 minutes
     become_user: matt
     community.general.dconf:
