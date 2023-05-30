@@ -8,6 +8,7 @@
     ansible.builtin.apt:
       pkg:
       - python3-pip
+      - python3-psutil
       - openssh-server
       - scdaemon
       - paperkey
@@ -174,4 +175,27 @@
     ansible.builtin.shell:
       cmd: dpkg -i nvim-linux64.deb
       chdir: "/home/matt/prog/extern/neovim/build"
+
+  - name: git pyenv
+    become_user: matt
+    git:
+      repo: https://github.com/pyenv/pyenv.git
+      dest: /home/matt/.pyenv
+      clone: yes
+  - name: git pyenv-virtualenv 
+    become_user: matt
+    git:
+      repo: https://github.com/pyenv/pyenv-virtualenv.git
+      dest: /home/matt/.pyenv/plugins/pyenv-virtualenv
+      clone: yes
+
+  - name: get rust
+    get_url:
+      url: https://sh.rustup.rs
+      dest: /tmp/sh.rustup.rs
+      mode: '0755'
+      force: 'yes'
+  - name: install rust
+    become_user: matt
+    ansible.builtin.shell: /tmp/sh.rustup.rs -y
 
