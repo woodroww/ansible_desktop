@@ -110,12 +110,12 @@
     become_user: matt
     community.general.dconf:
       key: /org/gnome/desktop/interface/clock-format
-      value: "'12h'" 
+      value: '12h' 
   - name: clock am pm gtk
     become_user: matt
     community.general.dconf:
       key: /org/gtk/settings/file-chooser/clock-format
-      value: "'12h'" 
+      value: '12h' 
   - name: git dotfiles
     ansible.builtin.git:
       repo: https://github.com/woodroww/.dotfiles.git 
