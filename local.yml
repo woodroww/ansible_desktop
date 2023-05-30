@@ -127,29 +127,51 @@
     ansible.builtin.shell:
       cmd: stow luanvim linux_zsh git kitty gnome scripts newsboat
       chdir: "/home/matt/.dotfiles"
-  - name: change shell zsh
+
+  - name: Install apt-transport-https
+    ansible.builtin.apt:
+      state: latest
+      update_cache: true
+  - name: Add Apt signing key
+    ansible.builtin.apt_key:
+      url: "https://dl.google.com/linux/linux_signing_key.pub"
+      state: present
+  - name: Add repository into sources list
+    ansible.builtin.apt_repository:
+      repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+      state: present
+      filename: google-chrome
+  - name: Install google-chrome-stable
+    ansible.builtin.apt:
+      name: "google-chrome-stable"
+      state: latest
+      update_cache: true
+
+  - name: make prog dirs
+    become_user: matt
+    file:
+      path: /home/matt/prog/extern
+      state: directory
+
+  - name: git nvim
+    become_user: matt
+    git:
+      repo: https://github.com/neovim/neovim
+      dest: /home/matt/prog/extern/neovim
+      clone: yes
+      version: stable
+  - name: build nvim
     become_user: matt
     ansible.builtin.shell:
-      cmd: chsh -s /bin/zsh
-  - name: install Google Chrome
-    hosts: all
-    become: true
-    tasks:
-      - name: Install apt-transport-https
-        ansible.builtin.apt:
-          state: latest
-          update_cache: true
-      - name: Add Apt signing key
-        ansible.builtin.apt_key:
-          url: "https://dl.google.com/linux/linux_signing_key.pub"
-          state: present
-      - name: Add repository into sources list
-        ansible.builtin.apt_repository:
-          repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
-          state: present
-          filename: google-chrome
-      - name: Install google-chrome-stable
-        ansible.builtin.apt:
-          name: "google-chrome-stable"
-          state: latest
-          update_cache: true
+      cmd: make CMAKE_BUILD_TYPE=Release
+      chdir: "/home/matt/prog/extern/neovim"
+  - name: package nvim
+    become_user: matt
+    ansible.builtin.shell:
+      cmd: cpack -G DEB
+      chdir: "/home/matt/prog/extern/neovim/build"
+  - name: install nvim
+    ansible.builtin.shell:
+      cmd: dpkg -i nvim-linux64.deb
+      chdir: "/home/matt/prog/extern/neovim/build"
+
