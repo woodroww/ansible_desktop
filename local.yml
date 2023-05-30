@@ -70,7 +70,7 @@
     become_user: matt
     community.general.dconf:
       key: /org/gnome/terminal/legacy/theme-variant
-      value: 'dark'
+      value: "'dark'"
   - name: mouse natural direction
     become_user: matt
     community.general.dconf:
