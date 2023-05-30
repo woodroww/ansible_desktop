@@ -95,7 +95,7 @@
     become_user: matt
     community.general.dconf:
       key: /org/gnome/desktop/session/idle-delay/
-      value: "uint32 900"
+      value: "900"
   - name: brightness up
     become_user: matt
     community.general.dconf:
@@ -106,17 +106,17 @@
     community.general.dconf:
       key: /org/gnome/settings-daemon/plugins/media-keys/screen-brightness-down
       value: "['F11']" 
-  - name: git dotfiles
-    ansible.builtin.git:
-      repo: https://github.com/woodroww/.dotfiles.git 
-      dest: /home/matt/.dotfiles
   - name: clock am pm gnome
     become_user: matt
     community.general.dconf:
       key: /org/gnome/desktop/interface/clock-format
-      value: "12h" 
+      value: "'12h'" 
   - name: clock am pm gtk
     become_user: matt
     community.general.dconf:
       key: /org/gtk/settings/file-chooser/clock-format
-      value: "12h"
+      value: "'12h'" 
+  - name: git dotfiles
+    ansible.builtin.git:
+      repo: https://github.com/woodroww/.dotfiles.git 
+      dest: /home/matt/.dotfiles
