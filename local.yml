@@ -53,7 +53,7 @@
       - libffi-dev
       - libreadline-dev
       - libsqlite3-dev
-      - libzma-dev
+        #- libzma-dev
       - tk-dev
       - libasound2-dev
       - libudev-dev
