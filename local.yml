@@ -63,45 +63,54 @@
   - name: dark gnome
     become_user: matt
     dconf:
-      key: "/org/gnome/desktop/interface gtk-theme"
+      key: "/org/gnome/desktop/interface/gtk-theme"
       value: "Adwaita-dark"
+      state: present
   - name: dark gnome terminal
     become_user: matt
     dconf:
       key: "/org/gnome/terminal/legacy/theme-variant"
       value: "dark"
+      state: present
   - name: mouse natural direction
     become_user: matt
     dconf:
       key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
       value: "true"
+      state: present
   - name: dark gnome terminal
     become_user: matt
     dconf:
       key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
       value: "true"
+      state: present
   - name: automatic brightness off
     become_user: matt
     dconf:
       key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
       value: "false"
+      state: present
   - name: automatic suspend off
     become_user: matt
     dconf:
       key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
       value: "nothing"
+      state: present
   - name: blank screen 15 minutes
     become_user: matt
     dconf:
       key: "/org/gnome/desktop/session/idle-delay/uint32"
       value: 900
+      state: present
   - name: brightness up
     become_user: matt
     dconf:
       key: "/org/gnome/settings-daemon/plugins/media-keys/screen-brightness-up"
       value: "['F12']" 
+      state: present
   - name: brightness down
     become_user: matt
     dconf:
       key: "/org/gnome/settings-daemon/plugins/media-keys/screen-brightness-down"
       value: "['F11']" 
+      state: present
