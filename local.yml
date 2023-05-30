@@ -16,6 +16,7 @@
       - fzf
       - zoxide
       - exa
+      - htop
       - tmux
       - tree
       - pass
@@ -117,16 +118,16 @@
       key: /org/gtk/settings/file-chooser/clock-format
       value: "'12h'" 
   - name: git dotfiles
+    become_user: matt
     ansible.builtin.git:
       repo: https://github.com/woodroww/.dotfiles.git 
       dest: /home/matt/.dotfiles
   - name: stow things
+    become_user: matt
     ansible.builtin.shell:
       cmd: stow luanvim linux_zsh git kitty gnome scripts newsboat
       chdir: "/home/matt/.dotfiles"
   - name: change shell zsh
+    become_user: matt
     ansible.builtin.shell:
       cmd: chsh -s /bin/zsh
-  - name: zsh
-    ansible.builtin.shell:
-      cmd: zsh
