@@ -63,7 +63,7 @@
   - name: dark gnome
     become_user: matt
     dconf:
-      key: "/org/gnome/desktop/interface/gtk-theme"
+      key: "/org/gnome/desktop/interface gtk-theme"
       value: "Adwaita-dark"
   - name: dark gnome terminal
     become_user: matt
@@ -95,7 +95,6 @@
     dconf:
       key: "/org/gnome/desktop/session/idle-delay/uint32"
       value: 900
-
   - name: brightness up
     become_user: matt
     dconf:
