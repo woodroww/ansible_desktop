@@ -63,54 +63,46 @@
   - name: dark gnome
     become_user: matt
     dconf:
-      key: "/org/gnome/desktop/interface/gtk-theme"
-      value: "Adwaita-dark"
+      key: /org/gnome/desktop/interface/gtk-theme
+      value: 'Adwaita-dark'
       state: present
   - name: dark gnome terminal
     become_user: matt
     dconf:
-      key: "/org/gnome/terminal/legacy/theme-variant"
-      value: "dark"
-      state: present
+      key: /org/gnome/terminal/legacy/theme-variant
+      value: 'dark'
   - name: mouse natural direction
     become_user: matt
     dconf:
-      key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
-      value: "true"
-      state: present
+      key: /org/gnome/desktop/peripherals/mouse/natural-scroll
+      value: 'true'
   - name: dark gnome terminal
     become_user: matt
     dconf:
-      key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
-      value: "true"
-      state: present
+      key: /org/gnome/desktop/peripherals/mouse/natural-scroll
+      value: 'true'
   - name: automatic brightness off
     become_user: matt
     dconf:
-      key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
-      value: "false"
-      state: present
+      key: /org/gnome/settings-daemon/plugins/power/ambient-enabled
+      value: 'false'
   - name: automatic suspend off
     become_user: matt
     dconf:
-      key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
-      value: "nothing"
-      state: present
+      key: /org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type
+      value: 'nothing'
   - name: blank screen 15 minutes
     become_user: matt
     dconf:
-      key: "/org/gnome/desktop/session/idle-delay/uint32"
+      key: /org/gnome/desktop/session/idle-delay/uint32
       value: 900
-      state: present
   - name: brightness up
     become_user: matt
     dconf:
-      key: "/org/gnome/settings-daemon/plugins/media-keys/screen-brightness-up"
+      key: /org/gnome/settings-daemon/plugins/media-keys/screen-brightness-up
       value: "['F12']" 
-      state: present
   - name: brightness down
     become_user: matt
     dconf:
-      key: "/org/gnome/settings-daemon/plugins/media-keys/screen-brightness-down"
+      key: /org/gnome/settings-daemon/plugins/media-keys/screen-brightness-down
       value: "['F11']" 
-      state: present
