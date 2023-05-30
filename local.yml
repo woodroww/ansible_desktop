@@ -60,3 +60,49 @@
       - kitty
       - kitty-doc
       - kitty-terminfo
+  - name: dark gnome
+    become_user: matt
+    dconf:
+      key: "/org/gnome/desktop/interface/gtk-theme"
+      value: "Adwaita-dark"
+  - name: dark gnome terminal
+    become_user: matt
+    dconf:
+      key: "/org/gnome/terminal/legacy/theme-variant"
+      value: "dark"
+  - name: mouse natural direction
+    become_user: matt
+    dconf:
+      key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
+      value: "true"
+  - name: dark gnome terminal
+    become_user: matt
+    dconf:
+      key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
+      value: "true"
+  - name: automatic brightness off
+    become_user: matt
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
+      value: "false"
+  - name: automatic suspend off
+    become_user: matt
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
+      value: "nothing"
+  - name: blank screen 15 minutes
+    become_user: matt
+    dconf:
+      key: "/org/gnome/desktop/session/idle-delay/uint32"
+      value: 900
+
+  - name: brightness up
+    become_user: matt
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/screen-brightness-up"
+      value: "['F12']" 
+  - name: brightness down
+    become_user: matt
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/screen-brightness-down"
+      value: "['F11']" 
