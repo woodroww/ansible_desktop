@@ -118,11 +118,24 @@
     community.general.dconf:
       key: /org/gtk/settings/file-chooser/clock-format
       value: "'12h'" 
+  - name: dont do anything with media insertion
+    become_user: matt
+    community.general.dconf:
+      key: /org/gnome/desktop/media-handling/autorun-never
+      value: 'true' 
+
   - name: git dotfiles
     become_user: matt
     ansible.builtin.git:
       repo: https://github.com/woodroww/.dotfiles.git 
       dest: /home/matt/.dotfiles
+
+  - name: make local bin directory
+    become_user: matt
+    file:
+      path: /home/matt/.local/bin
+      state: directory
+
   - name: stow things
     become_user: matt
     ansible.builtin.shell:
