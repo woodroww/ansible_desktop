@@ -95,7 +95,7 @@
     become_user: matt
     community.general.dconf:
       key: /org/gnome/desktop/session/idle-delay/uint32
-      value: 900
+      value: "'900'"
   - name: brightness up
     become_user: matt
     community.general.dconf:
