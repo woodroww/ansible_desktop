@@ -118,6 +118,12 @@
     community.general.dconf:
       key: /org/gtk/settings/file-chooser/clock-format
       value: "'12h'" 
+  - name: clock day of week
+    become_user: matt
+    community.general.dconf:
+      key: /org/gnome/desktop/interface/clock-show-weekday 
+      value: 'true' 
+
   - name: dont do anything with media insertion
     become_user: matt
     community.general.dconf:
@@ -160,6 +166,14 @@
       name: "google-chrome-stable"
       state: latest
       update_cache: true
+  - name: chrome dark
+    become_user: matt
+    ansible.builtin.shell:
+      cmd: cp /usr/share/applications/google-chrome.desktop ~/.local/share/applications/google-chrome.desktop
+  - name: chrome dark part 2
+    become_user: matt
+    ansible.builtin.shell:
+      cmd: sed -i 's;/usr/bin/google-chrome-stable;/usr/bin/google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode;g' ~/.local/share/applications/google-chrome.desktop
 
   - name: make prog dirs
     become_user: matt
