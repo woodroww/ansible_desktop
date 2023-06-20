@@ -273,7 +273,7 @@
   - name: turn on firewall
     community.general.ufw:
       state: enabled
-      policy: deny
+      default: deny
   - name: allow ssh
   - community.general.ufw:
       rule: allow
