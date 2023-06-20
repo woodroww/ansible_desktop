@@ -63,7 +63,7 @@
       - kitty-doc
       - kitty-terminfo
       - fd-find
-      - snort
+        #- snort
       - tldr
       - dconf-editor
       - trash-cli
