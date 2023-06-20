@@ -24,7 +24,7 @@
       - pwgen
       - sqlite3
       - libssl-dev
-      - postgresql-13
+      - postgresql-15
       - ripgrep
       - rsync
       - librsync-dev
