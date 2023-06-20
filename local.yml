@@ -73,6 +73,12 @@
       key: /org/gnome/desktop/interface/gtk-theme
       value: "'Adwaita-dark'"
       state: present
+  - name: dark gnome 2 2 2 2
+    become_user: matt
+    community.general.dconf:
+      key: /org/gnome/desktop/interface/color-scheme
+      value: "'prefer-dark'"
+      state: present
   - name: dark gnome terminal
     become_user: matt
     community.general.dconf:
