@@ -62,6 +62,11 @@
       - kitty
       - kitty-doc
       - kitty-terminfo
+      - fd-find
+      - snort
+      - tldr
+      - dconf-editor
+      - trash-cli
   - name: dark gnome
     become_user: matt
     community.general.dconf:
@@ -145,7 +150,7 @@
   - name: stow things
     become_user: matt
     ansible.builtin.shell:
-      cmd: stow luanvim linux_zsh git kitty gnome scripts newsboat
+      cmd: stow luanvim kali_zsh git scripts newsboat
       chdir: "/home/matt/.dotfiles"
 
   - name: Install apt-transport-https
@@ -174,6 +179,45 @@
     become_user: matt
     ansible.builtin.shell:
       cmd: sed -i 's;/usr/bin/google-chrome-stable;/usr/bin/google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode;g' ~/.local/share/applications/google-chrome.desktop
+
+  - name: Add Spotify apt signing key
+    ansible.builtin.apt_key:
+      url: "https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg"
+      state: present
+      keyring: "/etc/apt/trusted.gpg.d/spotify.gpg"
+  - name: Add Spotify repository into sources list
+    ansible.builtin.apt_repository:
+      repo: deb [arch=amd64] http://repository.spotify.com stable non-free
+      state: present
+      filename: spotify
+  - name: Install Spotify
+    ansible.builtin.apt:
+      name: "spotify-client"
+      state: latest
+      update_cache: true
+
+#   - name: Add 1Password apt signing key
+#     ansible.builtin.apt_key:
+#       url: "https://downloads.1password.com/linux/keys/1password.asc"
+#       state: present
+#       keyring: "/usr/share/keyrings/1password-archive-keyring.gpg"
+#   - name: Add 1Password repository into sources list
+#     ansible.builtin.apt_repository:
+#       repo: deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main
+#       state: present
+#       filename: 1password
+#   - name: add the debsig-verify policy
+# https://support.1password.com/install-linux/
+# sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+# curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+# sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+# curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+# 
+#   - name: Install1Password 
+#     ansible.builtin.apt:
+#       name: "1password"
+#       state: latest
+#       update_cache: true
 
   - name: make prog dirs
     become_user: matt
@@ -226,3 +270,10 @@
     become_user: matt
     ansible.builtin.shell: /tmp/sh.rustup.rs -y
 
+  - name: turn on firewall
+    community.general.ufw:
+      state: enabled
+  - name: allow ssh
+  - community.general.ufw:
+      rule: allow
+      name: OpenSSH
