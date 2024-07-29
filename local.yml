@@ -38,6 +38,7 @@
       - yubikey-luks
       - wireshark
       - ninja-build
+      - meson
       - gettext
       - cmake
       - apt-file
@@ -68,6 +69,11 @@
       - tldr
       - dconf-editor
       - trash-cli
+      - unattended-upgrades
+      - apt-listchanges
+      - bsd-mailx
+      - checkinstall
+      - parallel
   - name: dark gnome
     become_user: matt
     community.general.dconf:
@@ -185,7 +191,7 @@
       state: present
   - name: Add repository into sources list
     ansible.builtin.apt_repository:
-      repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+      repo: deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
       state: present
       filename: google-chrome
   - name: Install google-chrome-stable
