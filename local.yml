@@ -309,6 +309,7 @@
   - name: Download Installer
     tags: rust
     become_user: matt
+    become: true
     when: cargo_exists is failed
     get_url:
       url: https://sh.rustup.rs
