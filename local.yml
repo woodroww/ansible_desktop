@@ -214,22 +214,22 @@
     ansible.builtin.shell:
       cmd: sed -i 's;/usr/bin/google-chrome-stable;/usr/bin/google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode;g' ~/.local/share/applications/google-chrome.desktop
 
-  - name: Add Spotify apt signing key
-    ansible.builtin.apt_key:
-      url: "https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg"
-      state: present
-      keyring: "/etc/apt/trusted.gpg.d/spotify.gpg"
-  - name: Add Spotify repository into sources list
-    ansible.builtin.apt_repository:
-      repo: deb [arch=amd64] http://repository.spotify.com stable non-free
-      state: present
-      filename: spotify
-  - name: Install Spotify
-    ansible.builtin.apt:
-      name: "spotify-client"
-      state: latest
-      update_cache: true
-
+# - name: Add Spotify apt signing key
+#   ansible.builtin.apt_key:
+#     url: "https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg"
+#     state: present
+#     keyring: "/etc/apt/trusted.gpg.d/spotify.gpg"
+# - name: Add Spotify repository into sources list
+#   ansible.builtin.apt_repository:
+#     repo: deb [arch=amd64] http://repository.spotify.com stable non-free
+#     state: present
+#     filename: spotify
+# - name: Install Spotify
+#   ansible.builtin.apt:
+#     name: "spotify-client"
+#     state: latest
+#     update_cache: true
+#
 #   - name: Add 1Password apt signing key
 #     ansible.builtin.apt_key:
 #       url: "https://downloads.1password.com/linux/keys/1password.asc"
