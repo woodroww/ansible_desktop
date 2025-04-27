@@ -277,8 +277,14 @@
       cmd: cpack -G DEB
       chdir: "/home/matt/prog/extern/neovim/build"
   - name: install nvim
+    tags: amd
     ansible.builtin.shell:
       cmd: dpkg -i nvim-linux64.deb
+      chdir: "/home/matt/prog/extern/neovim/build"
+  - name: install nvim
+    tags: arm
+    ansible.builtin.shell:
+      cmd: dpkg -i nvim-linux-arm64.deb
       chdir: "/home/matt/prog/extern/neovim/build"
 
   - name: git pyenv
